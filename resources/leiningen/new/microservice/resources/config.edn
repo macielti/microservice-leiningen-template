@@ -1,7 +1,13 @@
-{:prod {:datalevin-uri "/tmp/{{name}}.datalevin"
-        :name          "{{name}}"
-        :service       {:host "0.0.0.0"
-                        :port 8000}
-        :telegram      {:token                 "<bot token>"
-                        :poll-interval-seconds 1
-                        :chat-id               "<chat id>"}}}
+{:prod {:name "{{name}}"
+        {{#datalevin}}
+        :datalevin-uri "/tmp/{{name}}.datalevin"
+        {{/datalevin}}
+        {{#http-server}}
+        :service {:host "0.0.0.0"
+                  :port 8000}
+        {{/http-server}}
+        {{#telegram}}
+        :telegram {:token                 "<bot token>"
+                   :poll-interval-seconds 1
+                   :chat-id               "<chat id>"}
+        {{/telegram}}}}
