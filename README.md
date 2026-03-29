@@ -2,9 +2,33 @@
 
 ## Usage
 
-If you want to create a new project, use the following command:
+Create a new project with all components included (default):
 
-`lein new net.clojars.macielti/microservice your-new-project-name`
+```bash
+lein new net.clojars.macielti/microservice your-new-project-name
+```
+
+### Selecting components
+
+Use `+component` flags to opt in to specific components only, or `-component` flags to opt out from the default set.
+
+Available components: `datalevin`, `http-server`, `telegram`, `http-client`
+
+> **Note:** `telegram` always requires `http-client` and will enable it automatically.
+
+```bash
+# Only telegram (+ http-client, required by telegram)
+lein new net.clojars.macielti/microservice your-new-project-name -- +telegram
+
+# Only HTTP server and datalevin
+lein new net.clojars.macielti/microservice your-new-project-name -- +http-server +datalevin
+
+# Everything except telegram
+lein new net.clojars.macielti/microservice your-new-project-name -- -telegram
+
+# Everything except telegram and datalevin
+lein new net.clojars.macielti/microservice your-new-project-name -- -telegram -datalevin
+```
 
 ## License
 
